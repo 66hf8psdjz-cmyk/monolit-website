@@ -1,0 +1,2022 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="MONOLIT - Premium Construction & Architecture Solutions">
+    <title>MONOLIT | Construction Excellence</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-black: #0A0A0A;
+            --secondary-black: #1A1A1A;
+            --tertiary-black: #2A2A2A;
+            --primary-yellow: #FFD700;
+            --secondary-yellow: #FFC700;
+            --light-text: #E8E8E8;
+            --gray-text: #B0B0B0;
+            --transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--primary-black);
+            color: var(--light-text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* ============ LOADER ============ */
+        .loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--primary-black);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            animation: fadeOut 0.8s ease-in-out 2s forwards;
+        }
+
+        .loader-content {
+            text-align: center;
+        }
+
+        .loader-logo {
+            font-size: 3rem;
+            font-weight: bold;
+            color: var(--primary-yellow);
+            margin-bottom: 20px;
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+
+        .loader-bar {
+            width: 60px;
+            height: 4px;
+            background: var(--tertiary-black);
+            border-radius: 2px;
+            overflow: hidden;
+            margin: 0 auto;
+        }
+
+        .loader-bar::after {
+            content: '';
+            display: block;
+            width: 30%;
+            height: 100%;
+            background: var(--primary-yellow);
+            animation: slide 1.5s ease-in-out infinite;
+        }
+
+        @keyframes slide {
+            0% { transform: translateX(-100%); }
+            50% { transform: translateX(233%); }
+            100% { transform: translateX(-100%); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.6; }
+        }
+
+        @keyframes fadeOut {
+            to {
+                opacity: 0;
+                visibility: hidden;
+            }
+        }
+
+        /* ============ HEADER ============ */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 215, 0, 0.1);
+            z-index: 1000;
+            padding: 1rem 2rem;
+            animation: slideDown 0.6s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: var(--light-text);
+            font-size: 1.8rem;
+            font-weight: 900;
+            letter-spacing: 2px;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .logo:hover {
+            color: var(--primary-yellow);
+            transform: scale(1.05);
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--primary-yellow), var(--secondary-yellow));
+            clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%);
+            animation: spin 3s linear infinite;
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        nav {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        nav a {
+            color: var(--light-text);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 600;
+            transition: var(--transition);
+            position: relative;
+            cursor: pointer;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-yellow);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after,
+        nav a.active::after {
+            width: 100%;
+        }
+
+        nav a:hover {
+            color: var(--primary-yellow);
+        }
+
+        .lang-switcher {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            border-radius: 4px;
+            padding: 0.4rem;
+            background: rgba(255, 215, 0, 0.05);
+        }
+
+        .lang-btn {
+            background: none;
+            border: none;
+            color: var(--gray-text);
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: 600;
+            padding: 0.4rem 0.8rem;
+            border-radius: 3px;
+            transition: var(--transition);
+        }
+
+        .lang-btn.active {
+            background: var(--primary-yellow);
+            color: var(--primary-black);
+        }
+
+        .lang-btn:hover:not(.active) {
+            color: var(--primary-yellow);
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            background: none;
+            border: none;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: var(--primary-yellow);
+            border-radius: 2px;
+            transition: var(--transition);
+        }
+
+        /* ============ HERO SECTION ============ */
+        .hero {
+            margin-top: 80px;
+            min-height: calc(100vh - 80px);
+            background: linear-gradient(135deg, var(--primary-black) 0%, var(--secondary-black) 50%, var(--primary-black) 100%);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(255, 215, 0, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0); }
+            33% { transform: translate(30px, -30px); }
+            66% { transform: translate(-20px, 20px); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            max-width: 900px;
+            text-align: center;
+            padding: 0 2rem;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            font-weight: 900;
+            margin-bottom: 1rem;
+            letter-spacing: -1px;
+            line-height: 1.1;
+        }
+
+        .hero h1 .accent {
+            color: var(--primary-yellow);
+            text-shadow: 0 0 30px rgba(255, 215, 0, 0.3);
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            color: var(--gray-text);
+            margin-bottom: 2.5rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.8;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 1s ease-out 0.2s both;
+        }
+
+        .btn {
+            padding: 1rem 2.5rem;
+            font-size: 1rem;
+            font-weight: 700;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            position: relative;
+            overflow: hidden;
+            letter-spacing: 0.5px;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            transition: left 0.3s ease;
+            z-index: 0;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn-primary {
+            background: var(--primary-yellow);
+            color: var(--primary-black);
+            box-shadow: 0 8px 32px rgba(255, 215, 0, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 16px 48px rgba(255, 215, 0, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--primary-yellow);
+            border: 2px solid var(--primary-yellow);
+            box-shadow: inset 0 0 20px rgba(255, 215, 0, 0.1);
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary-yellow);
+            color: var(--primary-black);
+            transform: translateY(-3px);
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s ease-in-out infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(10px); }
+        }
+
+        .scroll-indicator svg {
+            width: 30px;
+            height: 30px;
+            stroke: var(--primary-yellow);
+        }
+
+        /* ============ SECTION STYLES ============ */
+        section {
+            padding: 6rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+            text-align: center;
+            position: relative;
+            display: inline-block;
+            width: 100%;
+        }
+
+        .section-title .highlight {
+            color: var(--primary-yellow);
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background: var(--primary-yellow);
+            border-radius: 2px;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--gray-text);
+            font-size: 1.1rem;
+            margin: 3rem 0 4rem 0;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* ============ ABOUT SECTION ============ */
+        #about {
+            background: linear-gradient(180deg, var(--secondary-black) 0%, var(--primary-black) 100%);
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            margin-top: 4rem;
+        }
+
+        .about-image {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 20px 60px rgba(255, 215, 0, 0.15);
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .about-image:hover img {
+            transform: scale(1.05);
+        }
+
+        .about-content h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--light-text);
+        }
+
+        .about-content h3 .yellow {
+            color: var(--primary-yellow);
+        }
+
+        .about-content p {
+            color: var(--gray-text);
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .stat-box {
+            background: rgba(255, 215, 0, 0.05);
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            padding: 2rem 1rem;
+            text-align: center;
+            border-radius: 8px;
+            transition: var(--transition);
+            cursor: default;
+        }
+
+        .stat-box:hover {
+            background: rgba(255, 215, 0, 0.1);
+            border-color: rgba(255, 215, 0, 0.4);
+            transform: translateY(-5px);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: var(--primary-yellow);
+            margin-bottom: 0.5rem;
+            font-variant-numeric: tabular-nums;
+        }
+
+        .stat-label {
+            color: var(--gray-text);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* ============ TEAM SECTION ============ */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .team-member {
+            background: var(--secondary-black);
+            border: 1px solid rgba(255, 215, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: var(--transition);
+            animation: fadeInUp 0.8s ease-out both;
+        }
+
+        .team-member:nth-child(1) { animation-delay: 0.1s; }
+        .team-member:nth-child(2) { animation-delay: 0.2s; }
+        .team-member:nth-child(3) { animation-delay: 0.3s; }
+        .team-member:nth-child(4) { animation-delay: 0.4s; }
+
+        .team-member:hover {
+            border-color: var(--primary-yellow);
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(255, 215, 0, 0.15);
+        }
+
+        .team-photo {
+            width: 100%;
+            height: 250px;
+            background: linear-gradient(135deg, var(--tertiary-black), var(--secondary-black));
+            overflow: hidden;
+            position: relative;
+        }
+
+        .team-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .team-member:hover .team-photo img {
+            transform: scale(1.1);
+        }
+
+        .team-info {
+            padding: 1.5rem;
+        }
+
+        .team-name {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 0.3rem;
+        }
+
+        .team-position {
+            color: var(--primary-yellow);
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 1rem;
+        }
+
+        .team-bio {
+            color: var(--gray-text);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        /* ============ PROJECTS/GALLERY SECTION ============ */
+        #projects {
+            background: var(--primary-black);
+        }
+
+        .gallery-filters {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 0.6rem 1.5rem;
+            background: rgba(255, 215, 0, 0.05);
+            border: 2px solid rgba(255, 215, 0, 0.2);
+            color: var(--light-text);
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: var(--transition);
+            font-size: 0.9rem;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: var(--primary-yellow);
+            color: var(--primary-black);
+            border-color: var(--primary-yellow);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            aspect-ratio: 1;
+            cursor: pointer;
+            group: "gallery";
+            animation: fadeInUp 0.8s ease-out both;
+        }
+
+        .gallery-item:nth-child(1) { animation-delay: 0s; }
+        .gallery-item:nth-child(2) { animation-delay: 0.1s; }
+        .gallery-item:nth-child(3) { animation-delay: 0.2s; }
+        .gallery-item:nth-child(4) { animation-delay: 0.3s; }
+        .gallery-item:nth-child(5) { animation-delay: 0.4s; }
+        .gallery-item:nth-child(6) { animation-delay: 0.5s; }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(10, 10, 10, 0.7);
+            backdrop-filter: blur(2px);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: var(--transition);
+            gap: 1rem;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1) rotate(1deg);
+        }
+
+        .gallery-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            text-align: center;
+            color: var(--primary-yellow);
+        }
+
+        .gallery-category {
+            font-size: 0.85rem;
+            color: var(--gray-text);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* ============ MODAL LIGHTBOX ============ */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(5px);
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90vh;
+            background: var(--secondary-black);
+            border-radius: 8px;
+            overflow: hidden;
+            animation: zoomIn 0.3s ease-out;
+        }
+
+        @keyframes zoomIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .modal-image {
+            width: 100%;
+            max-height: 70vh;
+            object-fit: contain;
+        }
+
+        .modal-info {
+            padding: 2rem;
+        }
+
+        .modal-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--primary-yellow);
+        }
+
+        .modal-description {
+            color: var(--gray-text);
+            line-height: 1.7;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 215, 0, 0.1);
+            border: none;
+            color: var(--primary-yellow);
+            font-size: 1.5rem;
+            cursor: pointer;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+            z-index: 10;
+        }
+
+        .modal-close:hover {
+            background: var(--primary-yellow);
+            color: var(--primary-black);
+        }
+
+        /* ============ SERVICES SECTION ============ */
+        #services {
+            background: linear-gradient(180deg, var(--primary-black) 0%, var(--secondary-black) 100%);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .service-card {
+            background: var(--secondary-black);
+            border: 1px solid rgba(255, 215, 0, 0.1);
+            border-radius: 8px;
+            padding: 2.5rem 2rem;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            animation: fadeInUp 0.8s ease-out both;
+        }
+
+        .service-card:nth-child(1) { animation-delay: 0.1s; }
+        .service-card:nth-child(2) { animation-delay: 0.2s; }
+        .service-card:nth-child(3) { animation-delay: 0.3s; }
+        .service-card:nth-child(4) { animation-delay: 0.4s; }
+        .service-card:nth-child(5) { animation-delay: 0.5s; }
+        .service-card:nth-child(6) { animation-delay: 0.6s; }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.1) 0%, transparent 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .service-card:hover::before {
+            opacity: 1;
+        }
+
+        .service-card:hover {
+            border-color: var(--primary-yellow);
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(255, 215, 0, 0.15);
+        }
+
+        .service-icon {
+            font-size: 2.5rem;
+            color: var(--primary-yellow);
+            margin-bottom: 1.5rem;
+            transition: var(--transition);
+            position: relative;
+            z-index: 1;
+        }
+
+        .service-card:hover .service-icon {
+            transform: scale(1.2) rotate(10deg);
+        }
+
+        .service-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--light-text);
+            position: relative;
+            z-index: 1;
+        }
+
+        .service-description {
+            color: var(--gray-text);
+            line-height: 1.7;
+            font-size: 0.95rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ============ CONTACT SECTION ============ */
+        #contact {
+            background: var(--primary-black);
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            margin-top: 4rem;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .contact-item {
+            display: flex;
+            gap: 1.5rem;
+            align-items: flex-start;
+        }
+
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 215, 0, 0.1);
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-yellow);
+            font-size: 1.3rem;
+            flex-shrink: 0;
+            transition: var(--transition);
+        }
+
+        .contact-item:hover .contact-icon {
+            background: rgba(255, 215, 0, 0.2);
+            border-color: var(--primary-yellow);
+            transform: scale(1.1);
+        }
+
+        .contact-details h4 {
+            font-size: 1.1rem;
+            margin-bottom: 0.3rem;
+            color: var(--light-text);
+        }
+
+        .contact-details a,
+        .contact-details p {
+            color: var(--gray-text);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .contact-details a:hover {
+            color: var(--primary-yellow);
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            color: var(--light-text);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            border-radius: 4px;
+            padding: 0.75rem 1rem;
+            color: var(--light-text);
+            font-family: inherit;
+            font-size: 0.95rem;
+            transition: var(--transition);
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: var(--gray-text);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            background: rgba(255, 215, 0, 0.08);
+            border-color: var(--primary-yellow);
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.2);
+        }
+
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .form-group button {
+            background: var(--primary-yellow);
+            color: var(--primary-black);
+            padding: 1rem 2rem;
+            font-weight: 700;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: var(--transition);
+            margin-top: 0.5rem;
+        }
+
+        .form-group button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 32px rgba(255, 215, 0, 0.3);
+        }
+
+        .form-message {
+            padding: 1rem;
+            border-radius: 4px;
+            text-align: center;
+            display: none;
+            animation: slideIn 0.3s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .form-message.success {
+            background: rgba(34, 197, 94, 0.2);
+            border: 1px solid rgba(34, 197, 94, 0.4);
+            color: #22c55e;
+        }
+
+        .form-message.error {
+            background: rgba(239, 68, 68, 0.2);
+            border: 1px solid rgba(239, 68, 68, 0.4);
+            color: #ef4444;
+        }
+
+        /* ============ MAP PLACEHOLDER ============ */
+        .map-container {
+            width: 100%;
+            height: 350px;
+            background: linear-gradient(135deg, var(--tertiary-black), var(--secondary-black));
+            border-radius: 8px;
+            border: 2px solid rgba(255, 215, 0, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            margin-top: 2rem;
+        }
+
+        .map-content {
+            text-align: center;
+            position: relative;
+            z-index: 5;
+        }
+
+        .map-content i {
+            font-size: 3rem;
+            color: var(--primary-yellow);
+            margin-bottom: 1rem;
+        }
+
+        .map-content p {
+            color: var(--gray-text);
+        }
+
+        /* ============ FOOTER ============ */
+        footer {
+            background: var(--secondary-black);
+            border-top: 1px solid rgba(255, 215, 0, 0.1);
+            padding: 3rem 2rem;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h4 {
+            color: var(--primary-yellow);
+            margin-bottom: 1rem;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .footer-section a,
+        .footer-section p {
+            color: var(--gray-text);
+            text-decoration: none;
+            transition: var(--transition);
+            display: block;
+            margin-bottom: 0.7rem;
+            font-size: 0.9rem;
+        }
+
+        .footer-section a:hover {
+            color: var(--primary-yellow);
+            transform: translateX(5px);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 215, 0, 0.1);
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            border-radius: 50%;
+            color: var(--primary-yellow);
+            margin-bottom: 0;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            background: var(--primary-yellow);
+            color: var(--primary-black);
+            transform: translateY(-5px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 215, 0, 0.1);
+            color: var(--gray-text);
+            font-size: 0.9rem;
+        }
+
+        .footer-bottom a {
+            color: var(--primary-yellow);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-bottom a:hover {
+            text-decoration: underline;
+        }
+
+        /* ============ RESPONSIVE ============ */
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+
+            nav {
+                display: none;
+                position: absolute;
+                top: 70px;
+                right: 0;
+                background: var(--secondary-black);
+                border-bottom: 2px solid var(--primary-yellow);
+                flex-direction: column;
+                width: 100%;
+                padding: 1rem 0;
+                gap: 0;
+            }
+
+            nav.active {
+                display: flex;
+            }
+
+            nav a {
+                padding: 1rem 2rem;
+                border-bottom: 1px solid rgba(255, 215, 0, 0.1);
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            section {
+                padding: 4rem 1rem;
+            }
+
+            .stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+            }
+
+            .stats {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .modal-content {
+                max-width: 95%;
+            }
+
+            .lang-switcher {
+                flex-direction: column;
+                width: 100%;
+            }
+        }
+
+        /* ============ SCROLL ANIMATIONS ============ */
+        .fade-in {
+            animation: fadeInUp 0.8s ease-out both;
+        }
+
+        .scale-on-scroll {
+            transition: var(--transition);
+        }
+
+        .scale-on-scroll.visible {
+            transform: scale(1);
+            opacity: 1;
+        }
+
+        .scale-on-scroll:not(.visible) {
+            transform: scale(0.95);
+            opacity: 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- ============ LOADER ============ -->
+    <div class="loader">
+        <div class="loader-content">
+            <div class="loader-logo">MONOLIT</div>
+            <div class="loader-bar"></div>
+        </div>
+    </div>
+
+    <!-- ============ HEADER ============ -->
+    <header>
+        <div class="header-content">
+            <a href="#home" class="logo">
+                <div class="logo-icon"></div>
+                <span data-en="MONOLIT" data-ru="МОНОЛИТ">MONOLIT</span>
+            </a>
+            <nav>
+                <a href="#home" class="nav-link active" data-en="Home" data-ru="Главная">Home</a>
+                <a href="#about" class="nav-link" data-en="About" data-ru="О нас">About</a>
+                <a href="#projects" class="nav-link" data-en="Projects" data-ru="Проекты">Projects</a>
+                <a href="#services" class="nav-link" data-en="Services" data-ru="Услуги">Services</a>
+                <a href="#contact" class="nav-link" data-en="Contact" data-ru="Контакты">Contact</a>
+            </nav>
+            <div class="lang-switcher">
+                <button class="lang-btn active" data-lang="en">EN</button>
+                <button class="lang-btn" data-lang="ru">РУ</button>
+            </div>
+            <button class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- ============ HERO SECTION ============ -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>
+                <span data-en="Building Tomorrow," data-ru="Строим Завтра,">Building Tomorrow,</span>
+                <br>
+                <span class="accent" data-en="Today." data-ru="Сегодня.">Today.</span>
+            </h1>
+            <p data-en="Premium construction and architectural solutions for ambitious projects. MONOLIT delivers excellence, precision, and innovation in every structure we build." data-ru="Премиальные строительные и архитектурные решения для амбициозных проектов. MONOLIT обеспечивает совершенство, точность и инновации в каждом сооружении.">
+                Premium construction and architectural solutions for ambitious projects. MONOLIT delivers excellence, precision, and innovation in every structure we build.
+            </p>
+            <div class="hero-buttons">
+                <button class="btn btn-primary" onclick="scrollToSection('contact')" data-en="Get Started" data-ru="Начать">Get Started</button>
+                <button class="btn btn-secondary" onclick="scrollToSection('projects')" data-en="View Gallery" data-ru="Галерея">View Gallery</button>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+        </div>
+    </section>
+
+    <!-- ============ ABOUT SECTION ============ -->
+    <section id="about">
+        <h2 class="section-title" data-en="About MONOLIT" data-ru="О МОНОЛИТ">About <span class="highlight">MONOLIT</span></h2>
+        <p class="section-subtitle" data-en="With over 25 years of experience, we've shaped skylines and transformed landscapes across the region." data-ru="Более 25 лет опыта, мы создавали линии горизонтов и трансформировали ландшафты в регионе.">
+            With over 25 years of experience, we've shaped skylines and transformed landscapes across the region.
+        </p>
+
+        <div class="about-grid">
+            <div class="about-image">
+                <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=500&h=500&fit=crop" alt="Modern Architecture">
+            </div>
+            <div class="about-content">
+                <h3>
+                    <span data-en="Delivering " data-ru="Доставка ">Delivering </span>
+                    <span class="yellow" data-en="Excellence" data-ru="Совершенство">Excellence</span>
+                </h3>
+                <p data-en="Founded in 1998, MONOLIT has established itself as the premier construction partner for mega-scale residential, commercial, and industrial projects. Our commitment to quality, sustainability, and innovation drives every decision we make." data-ru="Основанная в 1998 году, MONOLIT утвердилась как главный строительный партнер для масштабных жилых, коммерческих и промышленных проектов. Наша приверженность качеству, устойчивости и инновациям направляет каждое решение.">
+                    Founded in 1998, MONOLIT has established itself as the premier construction partner for mega-scale residential, commercial, and industrial projects. Our commitment to quality, sustainability, and innovation drives every decision we make.
+                </p>
+                <p data-en="We employ a team of world-class architects, engineers, and project managers who bring expertise, passion, and precision to every project. Our track record speaks: 500+ completed projects, 98% on-time delivery, and zero safety incidents in operational excellence." data-ru="Мы нанимаем команду первоклассных архитекторов, инженеров и менеджеров проектов, которые привносят опыт, страсть и точность в каждый проект. Наш послужной список говорит: 500+ завершенных проектов, 98% доставки вовремя и нулевые инциденты безопасности.">
+                    We employ a team of world-class architects, engineers, and project managers who bring expertise, passion, and precision to every project. Our track record speaks: 500+ completed projects, 98% on-time delivery, and zero safety incidents in operational excellence.
+                </p>
+
+                <div class="stats">
+                    <div class="stat-box">
+                        <div class="stat-number counter" data-target="25">0</div>
+                        <div class="stat-label" data-en="Years" data-ru="Лет">Years</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-number counter" data-target="500">0</div>
+                        <div class="stat-label" data-en="Projects" data-ru="Проектов">Projects</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-number counter" data-target="2000">0</div>
+                        <div class="stat-label" data-en="Employees" data-ru="Сотрудников">Employees</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-number">98<span style="font-size: 1.2rem;">%</span></div>
+                        <div class="stat-label" data-en="On-Time" data-ru="Вовремя">On-Time</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Team Section -->
+        <h2 class="section-title" style="margin-top: 5rem;" data-en="Our Leadership" data-ru="Наше руководство">Our <span class="highlight" data-en="Leadership" data-ru="Руководство">Leadership</span></h2>
+        <div class="team-grid">
+            <div class="team-member">
+                <div class="team-photo">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=300&fit=crop" alt="CEO">
+                </div>
+                <div class="team-info">
+                    <div class="team-name" data-en="Alexei Volkov" data-ru="Алексей Волков">Alexei Volkov</div>
+                    <div class="team-position" data-en="Founder & CEO" data-ru="Основатель и генеральный директор">Founder & CEO</div>
+                    <div class="team-bio" data-en="Visionary leader with 30+ years in construction and urban development." data-ru="Харизматичный лидер с 30+ годами в строительстве и городском развитии.">
+                        Visionary leader with 30+ years in construction and urban development.
+                    </div>
+                </div>
+            </div>
+            <div class="team-member">
+                <div class="team-photo">
+                    <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=300&h=300&fit=crop" alt="CTO">
+                </div>
+                <div class="team-info">
+                    <div class="team-name" data-en="Marina Petrova" data-ru="Марина Петрова">Marina Petrova</div>
+                    <div class="team-position" data-en="Chief Technical Officer" data-ru="Главный технический директор">Chief Technical Officer</div>
+                    <div class="team-bio" data-en="Expert in BIM, sustainable engineering, and digital architecture solutions." data-ru="Эксперт в BIM, устойчивой инженерии и цифровых архитектурных решениях.">
+                        Expert in BIM, sustainable engineering, and digital architecture solutions.
+                    </div>
+                </div>
+            </div>
+            <div class="team-member">
+                <div class="team-photo">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=300&fit=crop" alt="COO">
+                </div>
+                <div class="team-info">
+                    <div class="team-name" data-en="Ivan Smirnov" data-ru="Иван Смирнов">Ivan Smirnov</div>
+                    <div class="team-position" data-en="Chief Operations Officer" data-ru="Главный операционный директор">Chief Operations Officer</div>
+                    <div class="team-bio" data-en="20+ years managing large-scale construction operations and safety protocols." data-ru="20+ лет управления крупномасштабными строительными операциями и протоколами безопасности.">
+                        20+ years managing large-scale construction operations and safety protocols.
+                    </div>
+                </div>
+            </div>
+            <div class="team-member">
+                <div class="team-photo">
+                    <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=300&h=300&fit=crop" alt="CFO">
+                </div>
+                <div class="team-info">
+                    <div class="team-name" data-en="Elena Kozlov" data-ru="Елена Козлов">Elena Kozlov</div>
+                    <div class="team-position" data-en="Chief Financial Officer" data-ru="Главный финансовый директор">Chief Financial Officer</div>
+                    <div class="team-bio" data-en="Strategic financial leadership and investment management across all divisions." data-ru="Стратегическое финансовое лидерство и управление инвестициями по всем подразделениям.">
+                        Strategic financial leadership and investment management across all divisions.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ PROJECTS / GALLERY SECTION ============ -->
+    <section id="projects">
+        <h2 class="section-title" data-en="Our Projects" data-ru="Наши Проекты">Our <span class="highlight" data-en="Projects" data-ru="Проекты">Projects</span></h2>
+        <p class="section-subtitle" data-en="A showcase of our most impressive completed works and ongoing developments." data-ru="Витрина наших самых впечатляющих завершенных работ и текущих разработок.">
+            A showcase of our most impressive completed works and ongoing developments.
+        </p>
+
+        <div class="gallery-filters">
+            <button class="filter-btn active" data-filter="all" data-en="All" data-ru="Все">All</button>
+            <button class="filter-btn" data-filter="residential" data-en="Residential" data-ru="Жилые">Residential</button>
+            <button class="filter-btn" data-filter="commercial" data-en="Commercial" data-ru="Коммерческие">Commercial</button>
+            <button class="filter-btn" data-filter="industrial" data-en="Industrial" data-ru="Промышленные">Industrial</button>
+        </div>
+
+        <div class="gallery-grid" id="galleryGrid">
+            <!-- Gallery items will be generated by JavaScript -->
+        </div>
+    </section>
+
+    <!-- ============ MODAL LIGHTBOX ============ -->
+    <div class="modal" id="galleryModal">
+        <div class="modal-content">
+            <button class="modal-close" id="modalClose">&times;</button>
+            <img id="modalImage" class="modal-image" src="" alt="">
+            <div class="modal-info">
+                <div class="modal-title" id="modalTitle"></div>
+                <div class="modal-description" id="modalDescription"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============ SERVICES SECTION ============ -->
+    <section id="services">
+        <h2 class="section-title" data-en="Our Services" data-ru="Наши Услуги">Our <span class="highlight" data-en="Services" data-ru="Услуги">Services</span></h2>
+        <p class="section-subtitle" data-en="Comprehensive construction and architectural solutions tailored to your vision." data-ru="Комплексные строительные и архитектурные решения, адаптированные к вашему видению.">
+            Comprehensive construction and architectural solutions tailored to your vision.
+        </p>
+
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-building"></i>
+                </div>
+                <div class="service-title" data-en="Residential Construction" data-ru="Жилое строительство">Residential Construction</div>
+                <div class="service-description" data-en="Modern residential complexes with luxury amenities, smart home integration, and sustainable design." data-ru="Современные жилые комплексы с люксовыми удобствами, интеграцией умного дома и устойчивым дизайном.">
+                    Modern residential complexes with luxury amenities, smart home integration, and sustainable design.
+                </div>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-shopping-center"></i>
+                </div>
+                <div class="service-title" data-en="Commercial Development" data-ru="Коммерческое развитие">Commercial Development</div>
+                <div class="service-description" data-en="State-of-the-art office buildings, retail spaces, and mixed-use developments that drive business growth." data-ru="Современные офисные здания, торговые помещения и многофункциональные комплексы, способствующие росту бизнеса.">
+                    State-of-the-art office buildings, retail spaces, and mixed-use developments that drive business growth.
+                </div>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-industry"></i>
+                </div>
+                <div class="service-title" data-en="Industrial Solutions" data-ru="Промышленные решения">Industrial Solutions</div>
+                <div class="service-description" data-en="Heavy-duty manufacturing facilities, warehouses, and logistics hubs built for durability and efficiency." data-ru="Тяжелые производственные предприятия, склады и логистические центры, построенные на прочность и эффективность.">
+                    Heavy-duty manufacturing facilities, warehouses, and logistics hubs built for durability and efficiency.
+                </div>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-pencil-ruler"></i>
+                </div>
+                <div class="service-title" data-en="Design & Planning" data-ru="Дизайн и планирование">Design & Planning</div>
+                <div class="service-description" data-en="Award-winning architectural design and urban planning that balance aesthetics with functionality." data-ru="Удостоенный наград архитектурный дизайн и городское планирование, балансирующие эстетику и функциональность.">
+                    Award-winning architectural design and urban planning that balance aesthetics with functionality.
+                </div>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-leaf"></i>
+                </div>
+                <div class="service-title" data-en="Green Building" data-ru="Зеленое строительство">Green Building</div>
+                <div class="service-description" data-en="Sustainable construction practices with LEED certification, renewable energy, and eco-friendly materials." data-ru="Практика устойчивого строительства с сертификацией LEED, возобновляемой энергией и экологичными материалами.">
+                    Sustainable construction practices with LEED certification, renewable energy, and eco-friendly materials.
+                </div>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-wrench"></i>
+                </div>
+                <div class="service-title" data-en="Renovation & Restoration" data-ru="Реновация и восстановление">Renovation & Restoration</div>
+                <div class="service-description" data-en="Expert restoration of historic structures and modern renovations that preserve heritage while adding value." data-ru="Экспертное восстановление исторических сооружений и современные ремонты, сохраняющие наследие и добавляющие ценность.">
+                    Expert restoration of historic structures and modern renovations that preserve heritage while adding value.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ CONTACT SECTION ============ -->
+    <section id="contact">
+        <h2 class="section-title" data-en="Get In Touch" data-ru="Свяжитесь с нами">Get In <span class="highlight" data-en="Touch" data-ru="Контакте">Touch</span></h2>
+        <p class="section-subtitle" data-en="Have a project in mind? Let's discuss how MONOLIT can bring your vision to life." data-ru="У вас есть проект в виду? Давайте обсудим, как MONOLIT может воплотить ваше видение в жизнь.">
+            Have a project in mind? Let's discuss how MONOLIT can bring your vision to life.
+        </p>
+
+        <div class="contact-container">
+            <div class="contact-info">
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-phone"></i>
+                    </div>
+                    <div class="contact-details">
+                        <h4 data-en="Phone" data-ru="Телефон">Phone</h4>
+                        <a href="tel:+74959876543" data-en="+7 (495) 987-6543" data-ru="+7 (495) 987-6543">+7 (495) 987-6543</a>
+                        <a href="tel:+74951234567" data-en="+7 (495) 123-4567" data-ru="+7 (495) 123-4567">+7 (495) 123-4567</a>
+                    </div>
+                </div>
+
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div class="contact-details">
+                        <h4 data-en="Email" data-ru="Электронная почта">Email</h4>
+                        <a href="mailto:info@monolit.ru">info@monolit.ru</a>
+                        <a href="mailto:projects@monolit.ru">projects@monolit.ru</a>
+                    </div>
+                </div>
+
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <div class="contact-details">
+                        <h4 data-en="Address" data-ru="Адрес">Address</h4>
+                        <p data-en="123 Premier Boulevard, Moscow, Russia 101000" data-ru="Бульвар Премьер, 123, Москва, Россия 101000">123 Premier Boulevard, Moscow, Russia 101000</p>
+                        <p style="margin-top: 0.5rem;" data-en="Business Hours: Mon - Fri, 9:00 AM - 6:00 PM" data-ru="Рабочее время: пн-пт, 9:00-18:00">Business Hours: Mon - Fri, 9:00 AM - 6:00 PM</p>
+                    </div>
+                </div>
+
+                <div class="map-container">
+                    <div class="map-content">
+                        <i class="fas fa-map"></i>
+                        <p data-en="Interactive Map" data-ru="Интерактивная карта">Interactive Map</p>
+                    </div>
+                </div>
+            </div>
+
+            <form class="contact-form" id="contactForm">
+                <div class="form-group">
+                    <label for="name" data-en="Full Name" data-ru="Полное имя">Full Name</label>
+                    <input type="text" id="name" name="name" placeholder="Your name" data-placeholder-en="Your name" data-placeholder-ru="Ваше имя" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email" data-en="Email Address" data-ru="Адрес электронной почты">Email Address</label>
+                    <input type="email" id="email" name="email" placeholder="your@email.com" data-placeholder-en="your@email.com" data-placeholder-ru="ваша@почта.ru" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="phone" data-en="Phone Number" data-ru="Номер телефона">Phone Number</label>
+                    <input type="tel" id="phone" name="phone" placeholder="+7 (495) 123-4567" data-placeholder-en="+7 (495) 123-4567" data-placeholder-ru="+7 (495) 123-4567">
+                </div>
+
+                <div class="form-group">
+                    <label for="subject" data-en="Project Type" data-ru="Тип проекта">Project Type</label>
+                    <input type="text" id="subject" name="subject" placeholder="e.g., Residential, Commercial" data-placeholder-en="e.g., Residential, Commercial" data-placeholder-ru="например: Жилое, Коммерческое" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="message" data-en="Project Details" data-ru="Детали проекта">Project Details</label>
+                    <textarea id="message" name="message" placeholder="Tell us about your project..." data-placeholder-en="Tell us about your project..." data-placeholder-ru="Расскажите о вашем проекте..." required></textarea>
+                </div>
+
+                <div id="formMessage" class="form-message"></div>
+
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary" data-en="Send Inquiry" data-ru="Отправить запрос">Send Inquiry</button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- ============ FOOTER ============ -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4 data-en="Company" data-ru="Компания">Company</h4>
+                <a href="#about" data-en="About Us" data-ru="О нас">About Us</a>
+                <a href="#projects" data-en="Our Projects" data-ru="Наши проекты">Our Projects</a>
+                <a href="#services" data-en="Services" data-ru="Услуги">Services</a>
+                <a href="#" data-en="Careers" data-ru="Вакансии">Careers</a>
+            </div>
+
+            <div class="footer-section">
+                <h4 data-en="Resources" data-ru="Ресурсы">Resources</h4>
+                <a href="#" data-en="Blog" data-ru="Блог">Blog</a>
+                <a href="#" data-en="Case Studies" data-ru="Примеры">Case Studies</a>
+                <a href="#" data-en="FAQ" data-ru="Часто задаваемые вопросы">FAQ</a>
+                <a href="#" data-en="Testimonials" data-ru="Отзывы">Testimonials</a>
+            </div>
+
+            <div class="footer-section">
+                <h4 data-en="Legal" data-ru="Юридический">Legal</h4>
+                <a href="#" data-en="Privacy Policy" data-ru="Политика конфиденциальности">Privacy Policy</a>
+                <a href="#" data-en="Terms of Service" data-ru="Условия обслуживания">Terms of Service</a>
+                <a href="#" data-en="Cookie Policy" data-ru="Политика в отношении файлов cookie">Cookie Policy</a>
+                <a href="#" data-en="Contact" data-ru="Контакт">Contact</a>
+            </div>
+
+            <div class="footer-section">
+                <h4 data-en="Follow Us" data-ru="Следите за нами">Follow Us</h4>
+                <div class="social-links">
+                    <a href="#" title="Facebook" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" title="Twitter" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" title="LinkedIn" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" title="Instagram" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" title="YouTube" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p data-en="&copy; 2024 MONOLIT Construction Company. All rights reserved. | Designed and built with precision and passion." data-ru="&copy; 2024 Строительная компания MONOLIT. Все права защищены. | Разработано с точностью и страстью.">
+                &copy; 2024 MONOLIT Construction Company. All rights reserved. | Designed and built with precision and passion.
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // ============ GALLERY DATA ============
+        const galleryData = [
+            {
+                id: 1,
+                title: 'Skyrise Tower - Downtown Moscow',
+                category: 'commercial',
+                description: 'A cutting-edge commercial complex featuring 45 floors of premium office space with panoramic city views. Equipped with smart building systems and sustainable design principles.',
+                image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=600&h=600&fit=crop',
+                titleRu: 'Небоскреб Skyrise - центр Москвы',
+                descriptionRu: 'Современный коммерческий комплекс с 45 этажами премиального офисного пространства и панорамным видом на город. Оборудован системами умного здания и принципами устойчивого дизайна.'
+            },
+            {
+                id: 2,
+                title: 'Luxury Residences - Botanical Park',
+                category: 'residential',
+                description: 'Exclusive residential complex with 300+ luxury apartments, private gardens, spa facilities, and concierge services. Located in prime botanical district with green spaces.',
+                image: 'https://images.unsplash.com/photo-1567521464027-f127ff144326?w=600&h=600&fit=crop',
+                titleRu: 'Люкс резиденции - Ботанический парк',
+                descriptionRu: 'Эксклюзивный жилой комплекс с 300+ люксовыми квартирами, частными садами, спа-центром и консьержем. Расположен в престижном ботаническом районе с зелеными насаждениями.'
+            },
+            {
+                id: 3,
+                title: 'Manufacturing Hub - Industrial Zone',
+                category: 'industrial',
+                description: 'State-of-the-art 250,000 sq m industrial complex with advanced manufacturing capabilities, warehousing, and logistics infrastructure for multinational enterprises.',
+                image: 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=600&h=600&fit=crop',
+                titleRu: 'Производственный центр - промышленная зона',
+                descriptionRu: 'Современный промышленный комплекс площадью 250 000 кв. м с передовыми производственными возможностями, хранилищами и логистической инфраструктурой для многонациональных предприятий.'
+            },
+            {
+                id: 4,
+                title: 'Premium Mall Complex',
+                category: 'commercial',
+                description: 'A stunning 180,000 sq m shopping destination featuring luxury boutiques, fine dining, cinema, and entertainment. Architectural masterpiece with innovative retail design.',
+                image: 'https://images.unsplash.com/photo-1579434900752-ee1e9e63dffc?w=600&h=600&fit=crop',
+                titleRu: 'Премиум торговый комплекс',
+                descriptionRu: 'Потрясающий торговый центр площадью 180 000 кв. м с люксовыми бутиками, ресторанами высокой кухни, кино и развлечениями. Архитектурный шедевр с инновационным дизайном.'
+            },
+            {
+                id: 5,
+                title: 'Green Residential Tower',
+                category: 'residential',
+                description: 'Eco-friendly residential tower with LEED Platinum certification. Features green roofs, solar panels, rainwater harvesting, and 500 modern family apartments with smart home technology.',
+                image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=600&h=600&fit=crop',
+                titleRu: 'Башня зеленой жилой зоны',
+                descriptionRu: 'Экологичная жилая башня с сертификацией LEED Platinum. Имеет зеленые крыши, солнечные панели, сбор дождевой воды и 500 современных семейных квартир с технологией умного дома.'
+            },
+            {
+                id: 6,
+                title: 'Regional Distribution Center',
+                category: 'industrial',
+                description: '120,000 sq m fully automated distribution center with robotics, real-time inventory management, and capacity for 2 million packages daily.',
+                image: 'https://images.unsplash.com/photo-1455849318169-8728d4b6b54f?w=600&h=600&fit=crop',
+                titleRu: 'Региональный распределительный центр',
+                descriptionRu: 'Полностью автоматизированный распределительный центр площадью 120 000 кв. м с робототехникой, управлением запасами в реальном времени и мощностью обработки 2 млн посылок в день.'
+            }
+        ];
+
+        // ============ LANGUAGE SYSTEM ============
+        let currentLanguage = 'en';
+
+        function switchLanguage(lang) {
+            currentLanguage = lang;
+            document.querySelectorAll('[data-en]').forEach(element => {
+                const text = element.getAttribute(`data-${lang}`);
+                if (text) {
+                    element.textContent = text;
+                }
+            });
+
+            document.querySelectorAll('[data-placeholder-en]').forEach(element => {
+                const text = element.getAttribute(`data-placeholder-${lang}`);
+                if (text) {
+                    element.placeholder = text;
+                }
+            });
+
+            // Update active language button
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            document.querySelector(`[data-lang="${lang}"]`).classList.add('active');
+        }
+
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                switchLanguage(e.target.getAttribute('data-lang'));
+            });
+        });
+
+        // ============ GALLERY GENERATION ============
+        function generateGallery(filter = 'all') {
+            const gallery = document.getElementById('galleryGrid');
+            gallery.innerHTML = '';
+
+            const filtered = filter === 'all' 
+                ? galleryData 
+                : galleryData.filter(item => item.category === filter);
+
+            filtered.forEach(item => {
+                const galleryItem = document.createElement('div');
+                galleryItem.className = 'gallery-item';
+                galleryItem.innerHTML = `
+                    <img src="${item.image}" alt="${item.title}">
+                    <div class="gallery-overlay">
+                        <div class="gallery-title">${currentLanguage === 'ru' ? item.titleRu : item.title}</div>
+                        <div class="gallery-category">${item.category}</div>
+                    </div>
+                `;
+                galleryItem.addEventListener('click', () => openModal(item));
+                gallery.appendChild(galleryItem);
+            });
+        }
+
+        // ============ GALLERY FILTERS ============
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                e.target.classList.add('active');
+                generateGallery(e.target.getAttribute('data-filter'));
+            });
+        });
+
+        // ============ MODAL FUNCTIONS ============
+        function openModal(item) {
+            const modal = document.getElementById('galleryModal');
+            document.getElementById('modalImage').src = item.image;
+            document.getElementById('modalTitle').textContent = currentLanguage === 'ru' ? item.titleRu : item.title;
+            document.getElementById('modalDescription').textContent = currentLanguage === 'ru' ? item.descriptionRu : item.description;
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('galleryModal');
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        document.getElementById('modalClose').addEventListener('click', closeModal);
+        document.getElementById('galleryModal').addEventListener('click', (e) => {
+            if (e.target === document.getElementById('galleryModal')) {
+                closeModal();
+            }
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeModal();
+            }
+        });
+
+        // ============ NAVIGATION ============
+        function scrollToSection(sectionId) {
+            const element = document.getElementById(sectionId);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        // Update active nav link on scroll
+        window.addEventListener('scroll', () => {
+            let current = '';
+            const sections = document.querySelectorAll('section');
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (pageYOffset >= sectionTop - 200) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // ============ HAMBURGER MENU ============
+        const hamburger = document.getElementById('hamburger');
+        const nav = document.querySelector('nav');
+
+        hamburger.addEventListener('click', () => {
+            nav.classList.toggle('active');
+            hamburger.style.transform = nav.classList.contains('active') ? 'rotate(90deg)' : 'rotate(0)';
+        });
+
+        // Close menu when link clicked
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                nav.classList.remove('active');
+                hamburger.style.transform = 'rotate(0)';
+            });
+        });
+
+        // ============ COUNTER ANIMATION ============
+        function animateCounters() {
+            const counters = document.querySelectorAll('.counter');
+            const speed = 200;
+
+            counters.forEach(counter => {
+                const target = parseInt(counter.getAttribute('data-target'));
+                let current = 0;
+
+                const increment = target / speed;
+
+                const updateCount = () => {
+                    current += increment;
+                    if (current < target) {
+                        counter.textContent = Math.floor(current);
+                        setTimeout(updateCount, 10);
+                    } else {
+                        counter.textContent = target;
+                    }
+                };
+
+                // Trigger when element is in view
+                const observer = new IntersectionObserver(entries => {
+                    if (entries[0].isIntersecting && counter.textContent === '0') {
+                        updateCount();
+                    }
+                }, { threshold: 0.5 });
+
+                observer.observe(counter);
+            });
+        }
+
+        // ============ SCROLL ANIMATIONS ============
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeInUp 0.8s ease-out forwards';
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.service-card, .team-member, .gallery-item').forEach(el => {
+            el.style.animation = 'none';
+            el.style.opacity = '0';
+            observer.observe(el);
+        });
+
+        // ============ FORM HANDLING ============
+        const contactForm = document.getElementById('contactForm');
+        const formMessage = document.getElementById('formMessage');
+
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            // Simulate form submission
+            const formData = new FormData(contactForm);
+            const data = {
+                name: formData.get('name'),
+                email: formData.get('email'),
+                phone: formData.get('phone'),
+                subject: formData.get('subject'),
+                message: formData.get('message')
+            };
+
+            // Show success message
+            formMessage.textContent = currentLanguage === 'ru' 
+                ? 'Спасибо! Ваше сообщение отправлено. Мы свяжемся с вами в ближайшее время.' 
+                : 'Thank you! Your message has been sent. We\'ll get back to you soon.';
+            formMessage.className = 'form-message success';
+            formMessage.style.display = 'block';
+
+            // Reset form
+            contactForm.reset();
+
+            // Hide message after 5 seconds
+            setTimeout(() => {
+                formMessage.style.display = 'none';
+            }, 5000);
+
+            console.log('Form submitted:', data);
+        });
+
+        // ============ INITIALIZATION ============
+        document.addEventListener('DOMContentLoaded', () => {
+            generateGallery();
+            animateCounters();
+            switchLanguage('en');
+        });
+
+        // ============ SMOOTH SCROLLING ENHANCEMENT ============
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href !== '#' && document.querySelector(href)) {
+                    e.preventDefault();
+                    document.querySelector(href).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // ============ PARALLAX EFFECT ============
+        window.addEventListener('scroll', () => {
+            const hero = document.querySelector('.hero');
+            if (hero) {
+                const scrolled = window.pageYOffset;
+                hero.style.backgroundPosition = `center ${scrolled * 0.5}px`;
+            }
+        });
+
+        // ============ RIPPLE EFFECT ON BUTTONS ============
+        document.querySelectorAll('.btn').forEach(button => {
+            button.addEventListener('click', function(e) {
+                const ripple = document.createElement('span');
+                const rect = this.getBoundingClientRect();
+                const size = Math.max(rect.width, rect.height);
+                const x = e.clientX - rect.left - size / 2;
+                const y = e.clientY - rect.top - size / 2;
+
+                ripple.style.width = ripple.style.height = size + 'px';
+                ripple.style.left = x + 'px';
+                ripple.style.top = y + 'px';
+                ripple.classList.add('ripple');
+
+                if (!document.querySelector('style[data-ripple]')) {
+                    const style = document.createElement('style');
+                    style.setAttribute('data-ripple', 'true');
+                    style.textContent = `
+                        .btn { position: relative; }
+                        .ripple {
+                            position: absolute;
+                            border-radius: 50%;
+                            background: rgba(255, 255, 255, 0.6);
+                            transform: scale(0);
+                            animation: ripple-animation 0.6s ease-out;
+                            pointer-events: none;
+                        }
+                        @keyframes ripple-animation {
+                            to {
+                                transform: scale(4);
+                                opacity: 0;
+                            }
+                        }
+                    `;
+                    document.head.appendChild(style);
+                }
+
+                this.appendChild(ripple);
+            });
+        });
+
+        console.log('MONOLIT website loaded successfully! 🏗️');
+    </script>
+</body>
+</html>
